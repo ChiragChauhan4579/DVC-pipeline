@@ -27,4 +27,7 @@ Steps:
 10. Add model to dvc using `dvc add model/model.joblib`.
 11. Add and commit to github `git add --all` and `git commit -m "Trained random forest classifier"`.
 12. Run the evaluate file using `python src/evaluate.py`. A new json file under metrics would be created. I got an accuracy of 98%.
-13. Add and commit the json files to github `git add --all` and `git commit -m "Evaluate the model accuracy"`
+13. Add and commit the json files to github `git add --all` and `git commit -m "Evaluate the model accuracy"`.
+14. Push all the changes to github and dvc using `git push` and `dvc push -r "origin"`.
+15. Tag your commit `git tag -a model -m "RandomForest with accuracy 98%"`. Push your tags `git push origin --tags`.
+16. You can create further more branches with other experiments and then merge with your final branch.
