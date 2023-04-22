@@ -1,5 +1,7 @@
 # Data Version Control 
 
+**Note**: This the latest branch. It contains the latest updated readme so look at it. Other branches are commited in between so avoid those. 
+
 Fork the dvc template from https://github.com/realpython/data-version-control
 
 Clone the forked repository to your computer with the `git clone` command
