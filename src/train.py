@@ -4,6 +4,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
 def main(repo_path):
@@ -11,7 +12,7 @@ def main(repo_path):
     X = train_df.drop("diagnosis", axis=1)
     y = train_df["diagnosis"]
     x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model = LogisticRegression()
     model.fit(x_train, y_train)
     dump(model, repo_path / "model/model.joblib")
 

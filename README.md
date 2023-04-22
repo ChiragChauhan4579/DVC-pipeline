@@ -47,3 +47,13 @@ Make sure to replace `YourUsername` in the above command with your actual GitHub
     * `dvc run -n evaluate -d src/evaluate.py -d model/model.joblib -M metrics/accuracy.json python src/evaluate.py`
 6. Use `dvc metrics show` to see the metrics.
 7. Now add, commit and push to github and dvc.
+8. Look at `dvc.yaml` to see the whole pipeline.
+9. Now if you want to run other experiments you don't need to run dvc run all the times. Thats what reproducible pipeline was all about. 
+10. Create new branch and train a new model like Logistic regression.
+11. Now change the model in training.pt file and use `dvc status` to see the changes inside the files of pipeline.
+12. Now to run this logistic regression function use `dvc repro evaluate`. This will re run the training and evaluate stages of the pipeline.
+13. Now see the metrics but this time add a new flag -T to see metrics created by all runs. `dvc metrics show -T`.
+
+## Conclusion
+
+So now to run multiple experiments one can just make changes to the necessary files and use `dvc repro evaluate` to run the pipeline.
