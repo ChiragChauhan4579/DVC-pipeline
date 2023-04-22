@@ -22,8 +22,9 @@ Steps:
     * dvc push -r "origin"
     * git push --set-upstream origin <branch name>
 7. Create a script for praparing the dataset and run it with `python src/prepare.py`.
-8. Run the model with the training script `python src/train.py`.
-9. Add model to dvc using `dvc add model/model.joblib`.
-10. Add and push to github `git add --all` and `git commit -m "Trained random forest classifier"`
-
- 
+8. Add prepared files to dvc and commit others to github using `dvc add data prepared/train.csv data/prepared/test.csv` and `git add --all` and `git commit -m "Created train and test CSV files"`.
+9. Run the model with the training script `python src/train.py`.
+10. Add model to dvc using `dvc add model/model.joblib`.
+11. Add and commit to github `git add --all` and `git commit -m "Trained random forest classifier"`.
+12. Run the evaluate file using `python src/evaluate.py`. A new json file under metrics would be created. I got an accuracy of 98%.
+13. Add and commit the json files to github `git add --all` and `git commit -m "Evaluate the model accuracy"`
