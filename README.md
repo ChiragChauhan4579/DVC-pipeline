@@ -10,7 +10,7 @@ git clone git@github.com:YourUsername/data-version-control.git
 
 Make sure to replace `YourUsername` in the above command with your actual GitHub username.
 
-Steps:
+## Steps:
 1. cd to the dvc folder and initialize using `dvc init`.
 2. You can also create a new git branch for experimentation.
 3. Using dagshub for remote storage so creae a repository on dagshub and follow the dvc storage setup on dagshub. Do it with `dvc remote add path/to_dagshub.dvc`.
@@ -31,3 +31,19 @@ Steps:
 14. Push all the changes to github and dvc using `git push` and `dvc push -r "origin"`.
 15. Tag your commit `git tag -a model -m "RandomForest with accuracy 98%"`. Push your tags `git push origin --tags`.
 16. You can create further more branches with other experiments and then merge with your final branch.
+
+## Creating reproducible pipelines
+1. Create a new branch and remove the .dvc files as these will be again created in pipeline
+ * `dvc remove data/prepared/train.csv.dvc data/prepared/test.csv.dvc model/model.joblib.dvc`
+2. Now to create a pipeline once dvc run command has to be used. Few arguments to look at before running.
+    * The -n switch gives the stage a name.
+    * The -d switch passes the dependencies to the command.
+    * The -o switch defines the outputs of the command.
+    * The -M switch defines the metrics of the command
+3. Now running the prepare.py with dvc run as `dvc run -n prepare -d src/prepare.py -d data/raw -o data/prepared/train.csv -o data/prepared/test.csv python src/prepare.py`
+4. A new dvc.yaml file will be created showing the pipeline.
+5. Similary run for training and evaluate stages.
+    * `dvc run -n train -d src/train.py -d data/prepared/train.csv -o model/model.joblib python src/train.py`
+    * `dvc run -n evaluate -d src/evaluate.py -d model/model.joblib -M metrics/accuracy.json python src/evaluate.py`
+6. Use `dvc metrics show` to see the metrics.
+7. Now add, commit and push to github and dvc.
