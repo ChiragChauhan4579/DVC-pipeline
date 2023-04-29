@@ -3,8 +3,8 @@ import pandas as pd
 
 def main(repo_path):
     data_path = repo_path / "data"
-    train_path = data_path / "raw/train"
-    test_path = data_path / "raw/val"
+    train_path = data_path / "raw"
+    test_path = data_path / "raw"
 
     train_df = pd.read_csv(train_path / "train.csv")
     test_df = pd.read_csv(test_path / "test.csv")
